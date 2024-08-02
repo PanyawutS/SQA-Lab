@@ -4,8 +4,14 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(CURRENT_DIR))
 from source.CountClump import CountClump
 
-
 class TestCountClump(unittest.TestCase):
+    def setUp(self):
+        # Default setup values, if needed
+        self.default_nums = [1, 2, 2, 3, 4, 4]
+
+    def tearDown(self):
+        print('\nEnd of test', self.shortDescription())
+
     def test_case_1(self):
         """nums is None"""
         self.assertEqual(CountClump.count_clumps(None), 0)
