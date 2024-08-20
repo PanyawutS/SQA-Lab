@@ -18,6 +18,22 @@ class TestCurrencyExchanger(unittest.TestCase):
 
     # Mock the 'requests' package from source.currency_exchanger
     @patch("source.currency_exchanger.requests")
+    def test_get_currency_rate(self, mock_request):
+        print("test_get_currency Called...\n")
+        mock_request.get.return_value = get_mock_currency_api_response()
+
+        
+        self.exchanger.get_currency_rate()
+        
+        mock_request.get.assert_called_once()
+        
+        mock_request.get.assert_called_with("https://coc-kku-bank.com/foreign-exchange",
+            params={'from': 'THB', 'to': 'KRW'})
+        
+        self.assertIsNotNone(self.exchanger.api_response)
+        self.assertEqual(self.exchanger.api_response,self.mock_api_response.json())
+
+    @patch("source.currency_exchanger.requests")
     def test_currency_exchange(self, mock_request):
         # Assign mock's return value
         mock_request.get.return_value = self.mock_api_response
