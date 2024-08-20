@@ -2,6 +2,7 @@
 # SC353201 Software Quality Assurance
 # Semester 1/2567
 # Instructor: Chitsutha Soomlek
+# Panyawut Saengdaeng 653380138-3 Sec.1
 
 class CountClump:
   """
